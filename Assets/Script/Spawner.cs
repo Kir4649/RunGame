@@ -19,7 +19,7 @@ public class Spawner : MonoBehaviour
         while(true)
         {
             yield return new WaitForSeconds(Random.Range(minSpawnInterval, maxSpawnInterval));
-            int wallCount = Random.Range(1, 3);//出現する壁の数
+            int wallCount = Random.Range(1, 4);//出現する壁の数
             int[] indices = {0, 1, 2};
             // シャッフル
             for (int i = 0; i < indices.Length; i++)

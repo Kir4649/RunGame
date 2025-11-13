@@ -1,4 +1,4 @@
-using UnityEngine;
+ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
@@ -62,4 +62,5 @@ public class Player : MonoBehaviour
     {
         transform.Translate(Vector3.forward * Time.deltaTime * 10f);
     }
+
 }
