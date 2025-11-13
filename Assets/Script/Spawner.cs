@@ -4,7 +4,7 @@ using System.Collections;
 
 public class Spawner : MonoBehaviour
 {
-    public GameObject wallPrefab;//壁のプレハブ
+    public GameObject[] wallPrefabs;//壁のプレハブ
     public Transform[] spawnPoints; // 3つのスポーン位置
     public float minSpawnInterval = 1.5f;//
     public float maxSpawnInterval = 3f;//
@@ -31,7 +31,9 @@ public class Spawner : MonoBehaviour
             for (int i = 0; i < wallCount; i++)
             {
                 Transform spawnPoint = spawnPoints[indices[i]];
-                Instantiate(wallPrefab, spawnPoint.position, spawnPoint.rotation);
+                //ランダムに壁を選ぶ
+                GameObject randomWall = wallPrefabs[Random.Range(0, wallPrefabs.Length)];
+                Instantiate(randomWall, spawnPoint.position, spawnPoint.rotation);
             }
         }
     }
