@@ -1,4 +1,6 @@
- using UnityEngine;
+using System.Collections;
+using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -12,10 +14,14 @@ public class Player : MonoBehaviour
 
     private Rigidbody rb;
     private bool isGrounded;
+  
+    public GameObject Gameover;
     void Start()
     {
-        rb = GetComponent<Rigidbody>(); // ← 忘れずに！
+        if (Gameover != null) Gameover.SetActive(false);
+        rb = GetComponent<Rigidbody>(); 
         targetX = 0;//最初のスタート地点
+        Gameover.SetActive(false);
     }
 
     // Update is called once per frame
@@ -28,7 +34,7 @@ public class Player : MonoBehaviour
     }
     void HandleInput()
     {
-       
+
         if (Input.GetKeyDown(KeyCode.A))
         {
             currentLane = Mathf.Max(0, currentLane - 1); // 左へ
@@ -61,6 +67,20 @@ public class Player : MonoBehaviour
     void MoveForward()
     {
         transform.Translate(Vector3.forward * Time.deltaTime * 10f);
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Wall"))
+        {
+            Time.timeScale = 0;
+            if (Gameover != null) Gameover.SetActive(true);
+           
+        }
+        if (Input.GetKeyDown("enter"))
+        {
+            SceneManager.LoadScene("StartScenes");
+        }
     }
 
 }
