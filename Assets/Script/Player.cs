@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
@@ -10,10 +11,12 @@ public class Player : MonoBehaviour
     public LayerMask groundLayer;     // 地面のレイヤーを指定
     public Transform groundCheck;     // 足元のチェック位置
     public float groundCheckRadius = 0.2f;
+    [SerializeField]
+    private GameObject BlackWall;//暗転する画面
     private float targetX; //移動先
-
     private Rigidbody rb;
     private bool isGrounded;
+    bool end = false;
   
     public GameObject Gameover;
     void Start()
@@ -22,6 +25,8 @@ public class Player : MonoBehaviour
         rb = GetComponent<Rigidbody>(); 
         targetX = 0;//最初のスタート地点
         Gameover.SetActive(false);
+       
+        
     }
 
     // Update is called once per frame
@@ -31,6 +36,7 @@ public class Player : MonoBehaviour
         MoveToLane();// X方向にスムーズに移動
         Jump();
         //MoveForward(); // 前進処理
+
     }
     void HandleInput()
     {
@@ -73,14 +79,36 @@ public class Player : MonoBehaviour
     {
         if (collision.gameObject.layer == LayerMask.NameToLayer("Wall"))
         {
-            Time.timeScale = 0;
-            if (Gameover != null) Gameover.SetActive(true);
+            StartCoroutine(END());
+           
+           
            
         }
-        if (Input.GetKeyDown("enter"))
+        //if (Input.GetKeyDown("enter"))
+        //{
+        //    SceneManager.LoadScene("StartScenes");
+        //}
+    }
+    private IEnumerator END()
+    {
+       
+        while (true)
         {
-            SceneManager.LoadScene("StartScenes");
+            if (BlackWall.GetComponent<Image>().color.a != 1)
+            {
+                BlackWall.GetComponent<Image>().color += new Color(0, 0, 0, Time.deltaTime / 2);
+                if (BlackWall.GetComponent<Image>().color.a >= 1)
+                {
+                    Time.timeScale = 0;
+                    if (Gameover != null) Gameover.SetActive(true);
+                   
+                    SceneManager.LoadScene("StartScenes");
+                }
+            }
+            yield return null;
         }
+       
+       
     }
 
 }
