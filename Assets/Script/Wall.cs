@@ -12,6 +12,6 @@ public class Wall : MonoBehaviour
     void Update()
     {
         // プレイヤー方向へ動く（Zマイナス方向）
-        transform.Translate(Vector3.back * moveSpeed * Time.deltaTime);
+        transform.Translate(Vector3.back * moveSpeed * Time.deltaTime, Space.World);
     }
 }
