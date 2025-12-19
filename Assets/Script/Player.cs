@@ -91,7 +91,7 @@ public class Player : MonoBehaviour
     }
     private IEnumerator END()
     {
-       
+        if (Gameover != null) Gameover.SetActive(true);
         while (true)
         {
             if (BlackWall.GetComponent<Image>().color.a != 1)
@@ -100,8 +100,7 @@ public class Player : MonoBehaviour
                 if (BlackWall.GetComponent<Image>().color.a >= 1)
                 {
                     Time.timeScale = 0;
-                    if (Gameover != null) Gameover.SetActive(true);
-                   
+                    
                     SceneManager.LoadScene("StartScenes");
                 }
             }

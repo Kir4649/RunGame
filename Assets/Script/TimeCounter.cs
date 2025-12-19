@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -9,6 +10,8 @@ public class TimeCounter : MonoBehaviour
     public Text timeText;//ïbêîÇï\é¶
     public GameObject GameClear;
     // Update is called once per frame
+    [SerializeField]
+    private GameObject BlackWall;//à√ì]Ç∑ÇÈâÊñ 
 
     private void Start()
     {
@@ -26,8 +29,27 @@ public class TimeCounter : MonoBehaviour
         if (countdown <= 0)
         {
             countdown = 0;
-            if (GameClear != null) GameClear.SetActive(true);
-           
+            StartCoroutine(Clear());
+
+
+        }
+    }
+    private IEnumerator Clear()
+    {
+        if (GameClear != null) GameClear.SetActive(true);
+        while (true)
+        {
+            if (BlackWall.GetComponent<Image>().color.a != 1)
+            {
+                BlackWall.GetComponent<Image>().color += new Color(0, 0, 0, Time.deltaTime / 2);
+                if (BlackWall.GetComponent<Image>().color.a >= 1)
+                {
+                    Time.timeScale = 0;
+
+                    SceneManager.LoadScene("StartScenes");
+                }
+            }
+            yield return null;
         }
     }
 }
