@@ -256,6 +256,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e1a36ef8861db044b3d1a0ad91ae1dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timeCounter: {fileID: 771660781}
+  maxTime: 5
   wallPrefabs:
   - {fileID: 251261356490180484, guid: 343ae248dda7626438a3a14cdbd616a1, type: 3}
   - {fileID: 8927048627092016002, guid: 3b39a3165485aac48bb3df62e1f3bca5, type: 3}

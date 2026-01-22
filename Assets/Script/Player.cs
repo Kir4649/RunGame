@@ -80,14 +80,7 @@ public class Player : MonoBehaviour
         if (collision.gameObject.layer == LayerMask.NameToLayer("Wall"))
         {
             StartCoroutine(END());
-           
-           
-           
         }
-        //if (Input.GetKeyDown("enter"))
-        //{
-        //    SceneManager.LoadScene("StartScenes");
-        //}
     }
     private IEnumerator END()
     {
