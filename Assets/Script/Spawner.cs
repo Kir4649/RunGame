@@ -94,6 +94,7 @@ public class Spawner : MonoBehaviour
                 {
                     IntervalTime -= 0.1f;
                 }
+                yield return new WaitForSeconds(IntervalTime);
             }
         }
     }
