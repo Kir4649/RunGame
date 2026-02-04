@@ -13,11 +13,12 @@ public class TImeSpawner : MonoBehaviour
     private void Start()
     {
         countdown = GetComponent<TimeCounter>();
+        Time.timeScale = 1.2f;
     }
 
     void Update()
     {
-        Time.timeScale = 1.2f;
+
         // ŽžŠÔ‚ði‚ß‚é
         timer += Time.deltaTime;
 
@@ -30,7 +31,7 @@ public class TImeSpawner : MonoBehaviour
             timer = 0f;
 
             // ‚¾‚ñ‚¾‚ñ‘¬‚­‚·‚é
-            if (IntervalTime > 0.2f)
+            if (IntervalTime > 1.2f)
             {
                 IntervalTime -= 0.1f;
             }

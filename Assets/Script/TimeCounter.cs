@@ -36,7 +36,6 @@ public class TimeCounter : MonoBehaviour
     }
     private IEnumerator Clear()
     {
-        if (GameClear != null) GameClear.SetActive(true);
         while (true)
         {
             if (BlackWall.GetComponent<Image>().color.a != 1)
@@ -46,7 +45,7 @@ public class TimeCounter : MonoBehaviour
                 {
                     Time.timeScale = 0;
 
-                    SceneManager.LoadScene("StartScenes");
+                    SceneManager.LoadScene("EndScenes");
                 }
             }
             yield return null;
